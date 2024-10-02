@@ -11,7 +11,7 @@
 		1D50969D2C5CED04005F9636 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D50969C2C5CED04005F9636 /* ContentView.swift */; };
 		1D50969F2C5CED06005F9636 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D50969E2C5CED06005F9636 /* Assets.xcassets */; };
 		1D5096A22C5CED06005F9636 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5096A12C5CED06005F9636 /* Preview Assets.xcassets */; };
-		1D5096B62C608837005F9636 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1D5096B52C608837005F9636 /* RealmSwift */; };
+		1D5096B62C608837005F9636 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1D5096B52C608837005F9636 /* RealmSwift */; settings = {ATTRIBUTES = (Required, ); }; };
 		1D5096B92C609369005F9636 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5096B82C609369005F9636 /* Mood.swift */; };
 		1D5096BB2C609855005F9636 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5096BA2C609855005F9636 /* Music.swift */; };
 		1D5096BD2C609B1B005F9636 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5096BC2C609B1B005F9636 /* Playlist.swift */; };
@@ -21,7 +21,22 @@
 		1D5096C92C789C2C005F9636 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5096C82C789C2C005F9636 /* ContentViewModel.swift */; };
 		1DFECE042C81C8170052366B /* helpmespoti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFECE032C81C8170052366B /* helpmespoti.swift */; };
 		1DFECE062C81CDC00052366B /* helpmespotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFECE052C81CDC00052366B /* helpmespotify.swift */; };
+		B91BFA552CACCA300041C995 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 1D5096B52C608837005F9636 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B91BFA562CACCA300041C995 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B91BFA552CACCA300041C995 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D5096972C5CED04005F9636 /* qrater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qrater.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +129,7 @@
 				1D5096932C5CED04005F9636 /* Sources */,
 				1D5096942C5CED04005F9636 /* Frameworks */,
 				1D5096952C5CED04005F9636 /* Resources */,
+				B91BFA562CACCA300041C995 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -326,6 +342,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"qrater/Preview Content\"";
+				DEVELOPMENT_TEAM = 3PFDRPLY6N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = qrater/Info.plist;
@@ -357,6 +374,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"qrater/Preview Content\"";
+				DEVELOPMENT_TEAM = 3PFDRPLY6N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = qrater/Info.plist;

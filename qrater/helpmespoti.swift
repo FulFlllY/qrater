@@ -1,96 +1,112 @@
-import SpotifyiOS //github 링크 넣을 것
+import Combine
+import SpotifyiOS
 import Foundation
 
-
-struct SongDetails {
-    var title: String
-    var artistName: String
-    var albumName: String
-}
-
-class SpotifyManager: NSObject {
-    static let shared = SpotifyManager()
+@MainActor
+final class SpotifyController: NSObject, ObservableObject {
+    let spotifyClientID = "541c4ebc3df0441abca87671b29d4964"
+    let spotifyRedirectURL = URL(string:"spotify-ios-quick-start://spotify-login-callback")!
     
-    private var accessToken: String?
+    var accessToken: String? = nil
     
-    private let configuration = SPTConfiguration(
-        clientID: "541c4ebc3df0441abca87671b29d4964",
-        redirectURL: URL(string: "spotify-ios-quick-start://spotify-login-callback")!
+    @Published var currentTrackURI: String?
+    @Published var currentTrackName: String?
+    @Published var currentTrackArtist: String?
+    @Published var currentTrackDuration: Int?
+    @Published var currentTrackImage: UIImage?
+    
+    lazy var configuration = SPTConfiguration(
+        clientID: spotifyClientID,
+        redirectURL: spotifyRedirectURL
     )
     
-    var appRemote: SPTAppRemote {
-      let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
-      appRemote.connectionParameters.accessToken = self.accessToken
-      appRemote.delegate = self
-      return appRemote
+    lazy var appRemote: SPTAppRemote = {
+        let appRemote = SPTAppRemote(configuration: configuration, logLevel: .debug)
+        appRemote.connectionParameters.accessToken = self.accessToken
+        appRemote.delegate = self
+        return appRemote
+    }()
+    
+    override init() {
+        super.init()
     }
     
-    private override init() {}
+    func connect() {
+        if let _ = self.appRemote.connectionParameters.accessToken {
+            appRemote.connect()
+        }
+    }
     
-    func authrization() {
+    func disconnect() {
+        if appRemote.isConnected {
+            appRemote.disconnect()
+        }
+    }
+    
+    func setAccessToken(from url: URL) {
+        let parameters = appRemote.authorizationParameters(from: url)
+        
+        if let accessToken = parameters?[SPTAppRemoteAccessTokenKey] {
+            appRemote.connectionParameters.accessToken = accessToken
+            print("AccessToken: \(accessToken)")
+            self.accessToken = accessToken
+        } else if let errorDescription = parameters?[SPTAppRemoteErrorDescriptionKey] {
+            // Handle the error
+            print(errorDescription)
+        }
+    }
+    
+    func authorize() {
         self.appRemote.authorizeAndPlayURI("")
-    }
-    
-    func setAccessToken(accessToken: String?) {
-        print("AccessToken: \(accessToken ?? "There is no accessToken")")
-        self.accessToken = accessToken
-    }
-    
-    func fetchSongs(searchQuery: String, completion: @escaping ([SongDetails]?) -> Void) {
-        let query = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-        guard let url = URL(string: "https://api.spotify.com/v1/search?type=track&q=\(query)&limit=10") else {
-            completion(nil)
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                completion(nil)
-                return
-            }
-
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                   let tracks = json["tracks"] as? [String: Any],
-                   let items = tracks["items"] as? [[String: Any]] {
-                    var songDetailsList = [SongDetails]()
-                    for item in items {
-                        let title = item["name"] as? String ?? "Unknown title"
-                        let album = item["album"] as? [String: Any]
-                        let albumName = album?["name"] as? String ?? "Unknown album"
-                        let artists = item["artists"] as? [[String: Any]]
-                        let artistName = artists?.first?["name"] as? String ?? "Unknown artist"
-
-                        let songDetails = SongDetails(title: title, artistName: artistName, albumName: albumName)
-                        songDetailsList.append(songDetails)
-                    }
-                    completion(songDetailsList)
-                } else {
-                    completion(nil)
-                }
-            } catch {
-                print("Error parsing JSON: \(error)")
-                completion(nil)
-            }
-        }
-        task.resume()
     }
 }
 
-extension SpotifyManager: SPTAppRemoteDelegate {
+extension SpotifyController: SPTAppRemoteDelegate {
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-        print("")
+        self.appRemote = appRemote
+        self.appRemote.playerAPI?.delegate = self
+        self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
+            if let error = error {
+                print("Error subscribing to player state: \(error.localizedDescription)")
+            } else {
+                print("Successfully subscribed to player state")
+            }
+        })
     }
     
-    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: (any Error)?) {
-        print("")
+    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
+        // Handle the connection failure
     }
     
-    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: (any Error)?) {
-        print("")
+    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
+        // Handle the connection loss
+    }
+}
+
+extension SpotifyController: SPTAppRemotePlayerStateDelegate {
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+        self.currentTrackURI = playerState.track.uri
+        self.currentTrackName = playerState.track.name
+        self.currentTrackArtist = playerState.track.artist.name
+        self.currentTrackDuration = Int(playerState.track.duration) / 1000 // playerState.track.duration is in milliseconds
+        fetchImage()
+    }
+    
+    func fetchImage() {
+        appRemote.playerAPI?.getPlayerState { (result, error) in
+            if let error = error {
+                print("Error getting player state: \(error)")
+            } else if let playerState = result as? SPTAppRemotePlayerState {
+                self.appRemote.imageAPI?.fetchImage(forItem: playerState.track, with: CGSize(width: 300, height: 300), callback: { (image, error) in
+                    if let error = error {
+                        print("Error fetching track image: \(error.localizedDescription)")
+                    } else if let image = image as? UIImage {
+                        DispatchQueue.main.async {
+                            self.currentTrackImage = image
+                        }
+                    }
+                })
+            }
+        }
     }
 }

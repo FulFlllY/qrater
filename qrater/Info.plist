@@ -8,10 +8,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>helpmespotify</string>
+			<string>com.spotify.iOS-SDK-Quick-Start</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>spotify-ios-quick-start://spotify-login-callback</string>
+				<string>spotify-ios-quick-start</string>
 			</array>
 		</dict>
 	</array>
