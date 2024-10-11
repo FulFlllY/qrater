@@ -19,8 +19,11 @@
 		1D5096C52C78968B005F9636 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 1D5096C42C78968B005F9636 /* OpenAI */; };
 		1D5096C72C78988F005F9636 /* helpmegpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5096C62C78988F005F9636 /* helpmegpt.swift */; };
 		1D5096C92C789C2C005F9636 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5096C82C789C2C005F9636 /* ContentViewModel.swift */; };
+		1DA294C72CB9B383003AF4F0 /* StepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 1DA294C62CB9B383003AF4F0 /* StepperView */; };
+		1DA294C92CB9BB26003AF4F0 /* pullup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA294C82CB9BB23003AF4F0 /* pullup.swift */; };
+		1DCD4D542CAF60E000A20E65 /* home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD4D532CAF60D600A20E65 /* home.swift */; };
+		1DCD4D582CB35CAF00A20E65 /* firstInquiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD4D572CB35CA500A20E65 /* firstInquiry.swift */; };
 		1DFECE042C81C8170052366B /* helpmespoti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFECE032C81C8170052366B /* helpmespoti.swift */; };
-		1DFECE062C81CDC00052366B /* helpmespotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFECE052C81CDC00052366B /* helpmespotify.swift */; };
 		B91BFA552CACCA300041C995 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 1D5096B52C608837005F9636 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -50,8 +53,10 @@
 		1D5096C12C6B1ABD005F9636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1D5096C62C78988F005F9636 /* helpmegpt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpmegpt.swift; sourceTree = "<group>"; };
 		1D5096C82C789C2C005F9636 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		1DA294C82CB9BB23003AF4F0 /* pullup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pullup.swift; sourceTree = "<group>"; };
+		1DCD4D532CAF60D600A20E65 /* home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = home.swift; sourceTree = "<group>"; };
+		1DCD4D572CB35CA500A20E65 /* firstInquiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstInquiry.swift; sourceTree = "<group>"; };
 		1DFECE032C81C8170052366B /* helpmespoti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpmespoti.swift; sourceTree = "<group>"; };
-		1DFECE052C81CDC00052366B /* helpmespotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpmespotify.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +65,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D5096B62C608837005F9636 /* RealmSwift in Frameworks */,
+				1DA294C72CB9B383003AF4F0 /* StepperView in Frameworks */,
 				1D5096C52C78968B005F9636 /* OpenAI in Frameworks */,
 				1D5096C02C6B1A4E005F9636 /* SpotifyiOS in Frameworks */,
 			);
@@ -90,9 +96,11 @@
 				1D5096C12C6B1ABD005F9636 /* Info.plist */,
 				1D5096B72C60934D005F9636 /* Models */,
 				1D5096C62C78988F005F9636 /* helpmegpt.swift */,
-				1DFECE052C81CDC00052366B /* helpmespotify.swift */,
 				1DFECE032C81C8170052366B /* helpmespoti.swift */,
+				1DA294C82CB9BB23003AF4F0 /* pullup.swift */,
 				1D50969A2C5CED04005F9636 /* qraterApp.swift */,
+				1DCD4D532CAF60D600A20E65 /* home.swift */,
+				1DCD4D572CB35CA500A20E65 /* firstInquiry.swift */,
 				1D50969C2C5CED04005F9636 /* ContentView.swift */,
 				1D5096C82C789C2C005F9636 /* ContentViewModel.swift */,
 				1D50969E2C5CED06005F9636 /* Assets.xcassets */,
@@ -140,6 +148,7 @@
 				1D5096B52C608837005F9636 /* RealmSwift */,
 				1D5096BF2C6B1A4E005F9636 /* SpotifyiOS */,
 				1D5096C42C78968B005F9636 /* OpenAI */,
+				1DA294C62CB9B383003AF4F0 /* StepperView */,
 			);
 			productName = qrater;
 			productReference = 1D5096972C5CED04005F9636 /* qrater.app */;
@@ -173,6 +182,7 @@
 				1D5096B22C608837005F9636 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				1D5096BE2C6B1A4E005F9636 /* XCRemoteSwiftPackageReference "ios-sdk" */,
 				1D5096C32C78968B005F9636 /* XCRemoteSwiftPackageReference "OpenAI" */,
+				1DA294C52CB9B383003AF4F0 /* XCRemoteSwiftPackageReference "StepperView" */,
 			);
 			productRefGroup = 1D5096982C5CED04005F9636 /* Products */;
 			projectDirPath = "";
@@ -203,11 +213,13 @@
 				1D5096BD2C609B1B005F9636 /* Playlist.swift in Sources */,
 				1D50969D2C5CED04005F9636 /* ContentView.swift in Sources */,
 				1D5096B92C609369005F9636 /* Mood.swift in Sources */,
+				1DCD4D542CAF60E000A20E65 /* home.swift in Sources */,
 				1D5096C92C789C2C005F9636 /* ContentViewModel.swift in Sources */,
 				1D50969B2C5CED04005F9636 /* qraterApp.swift in Sources */,
-				1DFECE062C81CDC00052366B /* helpmespotify.swift in Sources */,
 				1D5096C72C78988F005F9636 /* helpmegpt.swift in Sources */,
 				1DFECE042C81C8170052366B /* helpmespoti.swift in Sources */,
+				1DA294C92CB9BB26003AF4F0 /* pullup.swift in Sources */,
+				1DCD4D582CB35CAF00A20E65 /* firstInquiry.swift in Sources */,
 				1D5096BB2C609855005F9636 /* Music.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +459,14 @@
 				minimumVersion = 0.3.0;
 			};
 		};
+		1DA294C52CB9B383003AF4F0 /* XCRemoteSwiftPackageReference "StepperView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/badrinathvm/StepperView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -464,6 +484,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1D5096C32C78968B005F9636 /* XCRemoteSwiftPackageReference "OpenAI" */;
 			productName = OpenAI;
+		};
+		1DA294C62CB9B383003AF4F0 /* StepperView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1DA294C52CB9B383003AF4F0 /* XCRemoteSwiftPackageReference "StepperView" */;
+			productName = StepperView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
