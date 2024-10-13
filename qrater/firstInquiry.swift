@@ -1,22 +1,10 @@
 import SwiftUI
-import StepperView
 
 
 struct firstInquiry : View {
     @State var step = 1 //얘 상태가 바뀔 때마다 새로 돌아감
     @State private var mood: String = ""
    
-    let steps = [
-        TextView(text: "Card details", font: Font.system(size: 12, weight: Font.Weight.regular)),
-        TextView(text: "Application review", font: Font.system(size: 12, weight: Font.Weight.regular)),
-        TextView(text: "Authenticate OTP", font: Font.system(size: 12, weight: Font.Weight.regular))
-    ]
-
-    let indicators = [
-        StepperIndicationType.custom(Image(systemName:"1.circle.fill").font(.largeTitle).eraseToAnyView()),
-        StepperIndicationType.custom(Image(systemName:"2.circle.fill").font(.largeTitle).eraseToAnyView()),
-        StepperIndicationType.custom(Image(systemName:"3.circle.fill").font(.largeTitle).eraseToAnyView())
-    ]
 
     
     var body: some View {

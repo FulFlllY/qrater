@@ -1,5 +1,5 @@
 {
-  "originHash" : "56774eb02b25d5d930d4de8056e3f34ee1fe51f59bc7cfdbc0e3c1b4c296e6d2",
+  "originHash" : "14299c39f79c0d31530fb5aa9c4d84b7e17156c4434982093302229fb3e69b85",
   "pins" : [
     {
       "identity" : "ios-sdk",
@@ -35,15 +35,6 @@
       "state" : {
         "branch" : "master",
         "revision" : "76d79455a3d736ec01d4ef1864aa62cc5f0fc2cb"
-      }
-    },
-    {
-      "identity" : "stepperview",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/badrinathvm/StepperView.git",
-      "state" : {
-        "revision" : "c66fb84c640fbc312f4eead0b7ae2a77f93e0839",
-        "version" : "1.6.7"
       }
     }
   ],
