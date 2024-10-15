@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 struct home: View {
     @Environment(\.realm) var realm
     
@@ -17,10 +16,12 @@ struct home: View {
                     Text("Welcome listener!")
                         .font(.system(size: 35))
                         .bold()
-                        .padding(.top, 85.0)
+                        .padding(.top, 60.0)
                         .foregroundStyle(Color.white)
                     NavigationLink { //navigation link 역할을 하는 버튼
                         firstInquiry()
+                        
+                        
                     } label: {
                         Image("button")
                             .resizable()
@@ -42,7 +43,7 @@ struct home: View {
                     VStack(spacing: 16) { //각 원소마다 자동으로 간격 넣어줌. 기본 값 8
                         HStack {
                             Text("Artist Preference")
-                                .font(.system(size: 15))
+                                .font(.system(size: 18))
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
                                 .padding(.leading)
@@ -51,7 +52,7 @@ struct home: View {
                             Button {} label: {
                                 Image(systemName: "square.and.pencil")
                                     .resizable()
-                                    .frame(width: 30.0, height: 30.0)
+                                    .frame(width: 25.0, height: 25.0)
                                     .foregroundStyle(Color.white)
                             }
                             .padding(.trailing)
@@ -59,32 +60,32 @@ struct home: View {
                         HStack {
                             VStack {
                                 Circle()
-                                    .frame(width: 70, height: 70)
-                                    .padding(.bottom, 10)
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom, 5)
                                 
                                 Text("John Mayer").foregroundColor(Color.white)
                                     .font(.system(size: 12))
                             }
                             VStack {
                                 Circle()
-                                    .frame(width: 70, height: 70)
-                                    .padding(.bottom, 10)
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom, 5)
                                 
                                 Text("John Mayer").foregroundColor(Color.white)
                                     .font(.system(size: 12))
                             }
                             VStack {
                                 Circle()
-                                    .frame(width: 70, height: 70)
-                                    .padding(.bottom, 10)
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom, 5)
                                 
                                 Text("John Mayer").foregroundColor(Color.white)
                                     .font(.system(size: 12))
                             }
                             VStack {
                                 Circle()
-                                    .frame(width: 70, height: 70)
-                                    .padding(.bottom, 10)
+                                    .frame(width: 50, height: 50)
+                                    .padding(.bottom, 5)
                                 
                                 Text("John Mayer").foregroundColor(Color.white)
                                     .font(.system(size: 12))
@@ -98,20 +99,18 @@ struct home: View {
                         .padding(.horizontal, 30)
                     Spacer()
                 }
-                
-                Capsule()
-                    .fill(Color.secondary)
-                    .frame(width: 30, height: 3)
-                    .padding(10)
-
-                // your sheet content here
-
                 Spacer()
             }
+            PullUpHandleView()
         }
     }
 }
 
-#Preview {
-    home()
+#Preview
+{
+    ZStack {
+        home()
+    }
+
 }
+
