@@ -1,17 +1,16 @@
-//
-//  qraterApp.swift
-//  qrater
-//
-//  Created by FulFlllY on 8/2/24.
-//
-
 import SwiftUI
 
 @main
-struct qraterApp: App {
+struct QraterApp: App {
+    @StateObject private var spotifyManager = SpotifyManager()
+    
     var body: some Scene {
         WindowGroup {
-            home()
+            HomeView()
+                .onOpenURL { url in
+                    spotifyManager.setAccessToken(from: url)
+                }
+                .environmentObject(spotifyManager)
         }
     }
 }
