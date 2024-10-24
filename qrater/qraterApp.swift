@@ -1,5 +1,5 @@
 import SwiftUI
-
+//enjoy!
 @main
 struct QraterApp: App {
     @StateObject private var spotifyManager = SpotifyManager()
@@ -14,3 +14,5 @@ struct QraterApp: App {
         }
     }
 }
+
+
